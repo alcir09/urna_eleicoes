@@ -33,8 +33,10 @@ export class Tab2Page implements OnInit {
   cat1 = 0
   cat2 = 0
   cat3 = 0
+  vencedor = "";
   catblank = 0
   count = 0;
+
   candidate1 = 0;
   candidate2 = 0;
   candidate3 = 0;
@@ -50,7 +52,7 @@ export class Tab2Page implements OnInit {
   }
 
   while (cont) {
-    
+
   }
 
   inputBranco() {
@@ -60,11 +62,25 @@ export class Tab2Page implements OnInit {
 
   calculateVotes() {
 
-    if(this.totalvoto === 5){
-      alert('Votação encerrada!');
+    if (this.totalvoto === 5) {
+
+      if (this.candidate1 > this.candidate2 && this.candidate1 > this.candidate3) {
+
+        this.vencedor = "O Candidato vencedor é Cabo Daciolo com " + this.cat1 + "% dos votos!";
+   
+      }else if(this.candidate2 > this.candidate1 && this.candidate2 > this.candidate3) {
+        this.vencedor = "O Candidato vencedor é Marina Silva com " + this.cat2 + "% dos votos!";
+
+      }else if(this.candidate3 > this.candidate1 && this.candidate3 > this.candidate2) {
+
+        this.vencedor = "O Candidato vencedor é Levy Fidelix com " + this.cat3 + "% dos votos!";
+      }
+
+      
+      alert('Votação encerrada! ' + this.vencedor);
+
       return null;
-    }
-    else if (this.searchCandidates === '' || this.searchCandidates === null || this.searchCandidates === undefined) {
+    } else if (this.searchCandidates === '' || this.searchCandidates === null || this.searchCandidates === undefined) {
       alert('Digite o número do candidato.');
     } else if (this.searchCandidates !== '0' && this.searchCandidates !== '51' &&
       this.searchCandidates !== '21' && this.searchCandidates !== '20') {
@@ -100,7 +116,7 @@ export class Tab2Page implements OnInit {
     this.cat2 = (this.candidate2 * 100) / 5;
     this.cat3 = (this.candidate3 * 100) / 5;
     this.catblank = (this.blank * 100) / 5;
-    
+
     this.clearSearch();
   }
 
